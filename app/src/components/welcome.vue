@@ -1,6 +1,6 @@
 <template>
 	<div class="bodyclass">
-		
+
 		<div class="centered-container">
 			<div class="content">
 				<div style="font-size: 20px; color: black; font-weight: bold;">
@@ -18,10 +18,17 @@
 		</div>
 
 		<div class="centered-container">
-			<button v-for="(item, index) in items1" :key="index"
-				:class="['square1', { active: selectedItem1 === item.text }]" @click="toggleActive1(item.text)">
-				{{item.emoji}}{{ item.text }}
-			</button>
+			<div v-for="(item, index) in items1" :key="index">
+				<div v-if="index !== items1.length - 1"><button
+						:class="['square1', { active: selectedItem1 === item.text }]" @click="toggleActive1(item.text)">
+						{{ item.emoji }}{{ item.text }}
+					</button></div>
+				<div v-else>
+					<button
+						:class="['square1-1', { active: selectedItem1 === item.text }]" @click="toggleActive1(item.text)">
+						{{ item.emoji }}{{ item.text }}
+					</button></div>
+			</div>
 		</div>
 
 		<div class="centered-container" style="margin-top: 20px;">
@@ -100,7 +107,7 @@
 		data() {
 			return {
 				dataJson,
-				selectedItem1: '阿里云',
+				selectedItem1: '金山云',
 				selectedItem2: '中间件',
 				items1: [],
 				items2: [],
@@ -126,7 +133,7 @@
 				activeIndex2: null,
 				activeIndex3: null,
 				activeIndex4: null,
-		
+
 			};
 		},
 		methods: {
@@ -161,7 +168,7 @@
 
 				})
 			},
-			
+
 			show_result(text) {
 				this.items4 = []
 				var data_list = this.result_list[text]
@@ -353,12 +360,14 @@
 		width: 100%;
 		height: 400px;
 	}
-	.content img{
-	  max-width: 100%;
-	  height: 40px;
-	  width: 50px;
-	  cursor: pointer;
+
+	.content img {
+		max-width: 100%;
+		height: 40px;
+		width: 50px;
+		cursor: pointer;
 	}
+
 	.custom-row {
 		height: 60px;
 	}
@@ -402,7 +411,7 @@
 	}
 
 	.square1 {
-		width: 80px;
+		width: 90px;
 		height: 30px;
 		background-color: #e7fcee;
 		border: 1px solid #bbf7d0;
@@ -417,6 +426,7 @@
 		cursor: pointer;
 	}
 
+
 	.square1.active {
 		background-color: #2dac5c;
 		color: white;
@@ -426,7 +436,33 @@
 	.square1:hover {
 		box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
 	}
-
+	
+	.square1-1 {
+		width: 90px;
+		height: 30px;
+		background-color: #fdfdfd;
+		border: 1px solid #e7e5e4;
+		border-radius: 5px;
+		box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		transition: box-shadow 0.3s;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #292524;
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	
+	
+	.square1-1.active {
+		background-color: #57534e;
+		color: white;
+		border-color: #57534e;
+	}
+	
+	.square1-1:hover {
+		box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+	}
 
 	.square2 {
 		width: 110px;

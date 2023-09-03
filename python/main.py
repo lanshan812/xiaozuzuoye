@@ -18,4 +18,6 @@ def getsheetcontent():
 
 if __name__ == '__main__':
     CORS(api, supports_credentials=True)
-    api.run(port=8089,debug=True,host='127.0.0.1') # 启动服务
+    from gevent import pywsgi
+    server = pywsgi.WSGIServer(('0.0.0.0',8089),api)
+    server.serve_forever()
